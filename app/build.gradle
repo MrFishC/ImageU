@@ -42,5 +42,12 @@ dependencies {
     androidTestImplementation libs.androidx.test.ext.junit
     androidTestImplementation libs.espresso.core
 
-    implementation project(path: ':lib_image')
+//    implementation project(path: ':lib_image')
+    implementation libs.imageU
+
+    //使用DSL封装Glide框架 需要依赖
+    def glide_version = "4.12.0"
+    def glide_transformations_version = "4.3.0"
+    implementation("com.github.bumptech.glide:glide:${glide_version}")
+    implementation("jp.wasabeef:glide-transformations:${glide_transformations_version}")
 }
