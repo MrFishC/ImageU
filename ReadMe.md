@@ -54,13 +54,13 @@
 <img src="imageDir/图片加载插件.png" width="100%" />
 ## 3.3.核心类
 + IImageLoader：定义图片加载的方法(具体的方法根据实际的业务需求定制)
-```Kotlin
+```
 internal interface IImageLoader {
     fun loadImageByNet(context: Context, url: String, imageView: ImageView)
 }
 ```
 + GlideManager:IImageLoader的具体实现类，该类使用了创建型设计模的构建者模式。可以定义多种不同类型的图片加载框架实现类，根据策略模式进行替换；
-```Kotlin
+```
 internal class GlideManager private constructor() : IImageLoader {
     constructor(loadingResId: Int, loadErrorResId: Int) : this() {
         //初始化GlideUtil
@@ -103,7 +103,7 @@ internal class GlideManager private constructor() : IImageLoader {
 
 ```
 + GlideUtil：对Glide框架进行二次封装的类；
-```Kotlin
+```
 internal class GlideUtil private constructor() {
     private var mLoadingResId = 0
     private var mLoadErrorResId = 0
@@ -140,7 +140,7 @@ internal class GlideUtil private constructor() {
 
 + ImageManager：图片加载框架的管理者，负责IImageLoader的初始化以及提供获取IImageLoader的方法；
 
-```Kotlin
+```
 internal class ImageManager private constructor() {
 
     companion object {
@@ -173,7 +173,7 @@ internal class ImageManager private constructor() {
 
 + ImageU：提供给外界使用的类。在使用之前需要做初始化工作；
 
-```Kotlin
+```
 class ImageU {
     companion object {
         fun init(loadingResId: Int = 0, loadErrorResId: Int = 0) {
@@ -193,10 +193,8 @@ class ImageU {
 
 ## 3.4.上传到jitpack
 
-+
-在Jitpack平台测试的时候没有成功生成依赖，通过错误日志信息，猜测是agp版本的问题，于是对比之前生产过的插件的agp，将agp由8.2.0-alpha07降低至7.3.0，重新操作，未发生报错；
-+
-插件如何制作这里就不作介绍了，推荐[Android 安卓创建自己的依赖库（保姆级教程）](https://myhub.blog.csdn.net/article/details/109262602?spm=1001.2101.3001.6650.14&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-14-109262602-blog-124888001.pcrelevantt0_20220926_downloadratepraise_v1&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-14-109262602-blog-124888001.pcrelevantt0_20220926_downloadratepraise_v1&utm_relevant_index=15)
++ 在Jitpack平台测试的时候没有成功生成依赖，通过错误日志信息，猜测是agp版本的问题，于是对比之前生产过的插件的agp，将agp由8.2.0-alpha07降低至7.3.0，重新操作，未发生报错；
++ 插件如何制作这里就不作介绍了，推荐[Android 安卓创建自己的依赖库（保姆级教程）](https://myhub.blog.csdn.net/article/details/109262602?spm=1001.2101.3001.6650.14&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-14-109262602-blog-124888001.pcrelevantt0_20220926_downloadratepraise_v1&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-14-109262602-blog-124888001.pcrelevantt0_20220926_downloadratepraise_v1&utm_relevant_index=15)
 + 添加依赖
 
 ```groovy
