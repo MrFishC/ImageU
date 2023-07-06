@@ -200,7 +200,6 @@ class ImageU {
 ## 3.4.上传到jitpack
 
 + 在Jitpack平台测试的时候没有成功生成依赖，通过错误日志信息，猜测是agp版本的问题，于是对比之前生产过的插件的agp，将agp由8.2.0-alpha07降低至7.3.0，重新操作，未发生报错；
-
 + 插件如何制作这里就不作介绍了，推荐[Android 安卓创建自己的依赖库（保姆级教程）](https://myhub.blog.csdn.net/article/details/109262602?spm=1001.2101.3001.6650.14&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-14-109262602-blog-124888001.pcrelevantt0_20220926_downloadratepraise_v1&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-14-109262602-blog-124888001.pcrelevantt0_20220926_downloadratepraise_v1&utm_relevant_index=15)
 + 添加依赖
 
