@@ -10,8 +10,7 @@
 ## 2.1.主线流程
 
 + Glide的加载主线实际上对应着其三个api方法,with/load/into。
-+
-with方法涉及到生命周期的绑定，内部需要的资源准备：如，BitmapPool（图片池，支持图片的复用），ArrayPool（数组池，支持Byte[]
++ with方法涉及到生命周期的绑定，内部需要的资源准备：如，BitmapPool（图片池，支持图片的复用），ArrayPool（数组池，支持Byte[]
 的复用），RequestManager（请求管理），RequestManagerRetriever（请求管理检索），MemoryCache（内存缓存）等等的初始化；
 + load方法主要是对外部环境使用Glide框架时设置的配置信息的加载，如：占位图，加载错误，缓存策略等；
 + into方法最为复杂，涉及到的主要有4个方面，对目标资源的加载，加载后进行解码，解码后进行缓存，以及将资源绑定到目标控件；
@@ -21,8 +20,7 @@ with方法涉及到生命周期的绑定，内部需要的资源准备：如，B
 + **活动缓存**:优先级最高，存储的是正在使用的资源；
 + **内存缓存**:使用的是Lrucache结合弱引用的方案；
 + **磁盘缓存**:维护了一个Lrucache的队列；
-+
-活动缓存存在是为了解决内存缓存使用Lrucache时存在的弊端问题，Lrucache的原理是将最近使用的对象的强引用存储到LinkedHashMap中，并且把最近最少使用的对象在缓存阀值达到之前将其从内存中移除。假设将屏幕中正在使用的图片资源作为内存缓存的方式进行缓存，若出现内存不足的情况，可能会对屏幕中正在使用的资源进行回收，如此会产生不好的用户体验；
++ 活动缓存存在是为了解决内存缓存使用Lrucache时存在的弊端问题，Lrucache的原理是将最近使用的对象的强引用存储到LinkedHashMap中，并且把最近最少使用的对象在缓存阀值达到之前将其从内存中移除。假设将屏幕中正在使用的图片资源作为内存缓存的方式进行缓存，若出现内存不足的情况，可能会对屏幕中正在使用的资源进行回收，如此会产生不好的用户体验；
 
 ## 2.3.内存抖动与OOM
 
@@ -42,11 +40,8 @@ with方法涉及到生命周期的绑定，内部需要的资源准备：如，B
 
 ## 2.5.Glide问答
 
-+ **子线程使用Glide失效**
-  ，其原因是Glide的内部使用了Handler，在RequestManager构造方法中创建Handler时，传递的Looper是主线程的Looper，
-  在子线程中使用Glide最终就相当于在子线程中更新UI，但是没有使用子线程的Looper，导致会抛出异常；
-+ **低版本加载Glide变绿的问题**
-  ，其原因是早期版本Bitmap的格式是rbg_565,高版本Bitmap的格式是argb_8888,前者代表8位rgb位图，后者代表32位rgb位图，位数越高代表可以存储的颜色信息更多，高版本也就不存在这个变绿的问题；
++ **子线程使用Glide失效**，其原因是Glide的内部使用了Handler，在RequestManager构造方法中创建Handler时，传递的Looper是主线程的Looper，在子线程中使用Glide最终就相当于在子线程中更新UI，但是没有使用子线程的Looper，导致会抛出异常；
++ **低版本加载Glide变绿的问题**，其原因是早期版本Bitmap的格式是rbg_565,高版本Bitmap的格式是argb_8888,前者代表8位rgb位图，后者代表32位rgb位图，位数越高代表可以存储的颜色信息更多，高版本也就不存在这个变绿的问题；
 
 # 三.插件封装
 
@@ -218,7 +213,7 @@ implementation 'com.github.MrFishC:ImageU:v1.1'
 ```
 
 + 测试效果如下
-  <img src="imageDir/插件测试.png" width="100%" />
+  <img src="imageDir/插件测试.jpg" width="100%" />
 
 # 四.总结
 
@@ -226,8 +221,7 @@ implementation 'com.github.MrFishC:ImageU:v1.1'
 + <font color="#dd0000">该插件的优点:</font><font color="#0000dd">
   对于使用者而言不需要关注底层具体使用的是哪一种加载框架，若需要替换加载框架，只需要替换GlideManager和GlideUtil即可。</font>
   该插件的封装方式虽然使用的是Kotlin语言，但同样适用与Java语言。
-+ 若使用Kotlin，我们可以使用DSL的方式（下方的项目中有示例）或者拓展函数的方式来封装Glide。
-+ [项目地址](https://github.com/MrFishC/ImageU)
++ 若使用Kotlin，我们可以使用DSL的方式（项目中有示例）或者拓展函数的方式来封装Glide。
 
 # License
 
