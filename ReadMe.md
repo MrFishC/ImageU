@@ -53,12 +53,14 @@
 
 <img src="imageDir/图片加载插件.png" width="100%" />
 ## 3.3.核心类
-+ IImageLoader：定义图片加载的方法(具体的方法根据实际的业务需求定制)
++ IImageLoader：定义图片加载的方法(具体的方法根据实际的业务需求定制);
+  
 ```
 internal interface IImageLoader {
     fun loadImageByNet(context: Context, url: String, imageView: ImageView)
 }
 ```
+
 + GlideManager:IImageLoader的具体实现类，该类使用了创建型设计模的构建者模式。可以定义多种不同类型的图片加载框架实现类，根据策略模式进行替换；
 ```
 internal class GlideManager private constructor() : IImageLoader {
