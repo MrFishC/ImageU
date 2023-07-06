@@ -53,6 +53,7 @@
 
 <img src="imageDir/图片加载插件.png" width="100%" />
 ## 3.3.核心类
+
 + IImageLoader：定义图片加载的方法(具体的方法根据实际的业务需求定制);
   
 ```
